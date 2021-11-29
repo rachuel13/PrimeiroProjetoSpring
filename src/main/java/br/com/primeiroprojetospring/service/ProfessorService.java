@@ -13,15 +13,17 @@ public class ProfessorService {
 
 	@Autowired
 	private ProfessorRepository professorRepository;
-	
+
 	public List<Professor> buscarTodosProfessores() {
-		
+
 		return professorRepository.findAll();
-		
+
 	}
-	
+
 	public Professor salvar(Professor professor) {
-		
+
 		return professorRepository.save(professor);
+
 	}
+
 }
