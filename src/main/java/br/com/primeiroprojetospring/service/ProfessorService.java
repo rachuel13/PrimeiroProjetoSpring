@@ -1,7 +1,9 @@
 package br.com.primeiroprojetospring.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,12 @@ public class ProfessorService {
 
 		return professorRepository.save(professor);
 
+	}
+	
+	public Professor buscarPorID(Integer id) throws ObjectNotFoundException {
+		Optional<Professor> professor = professorRepository.findById(id);
+		return professor.orElseThrow(()-> 
+		new ObjectNotFoundException(new Professor (), "Professor não encontrado. id: " + id));
 	}
 
 }
