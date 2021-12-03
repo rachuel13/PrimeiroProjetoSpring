@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http:www.thymeleaf.org">
 <head>
-<title>Listagem de Carros</title>
+<title>Listagem de Fabricantes</title>
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet"></link>
@@ -13,7 +13,7 @@
 	<div class="container">
 		<div class="panel-default">
 			<div class="text-center">
-				<h1 class="h4 text-gray-900 mb-4">Listagem de Carros</h1>
+				<h1 class="h4 text-gray-900 mb-4">Listagem de Fabricantes</h1>
 			</div>
 
 			<div class="panel-body">
@@ -23,25 +23,19 @@
 							<tr>
 								<th>ID</th>
 								<th>NOME</th>
-								<th>CHAVE</th>
-								<th>DOCUMENTO</th>
-								<th>ACESSÓRIOS</th>
+								<th>PAIS</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="carro :${carro}">
-								<td th:text="${carro.id}"></td>
-								<td th:text="${carro.modelo}"></td>
-								<td th:text="${carro.chaveCarro.id}"></td>
-								<td th:text="${carro.documentoCarro.id}"></td>
-								<td>
-									<span th:each="acessorio: ${carro.acessorios}" th:text="${'' + acessorio.nome + ' / '}"></span>
-								</td>
+							<tr th:each="fabricante :${fabricante}">
+								<td th:text="${fabricante.id}"></td>
+								<td th:text="${fabricante.nome}"></td>
+								<td th:text="${fabricante.pais}"></td>
 								<td>
 									<div class="btn-group pull-right">
-										<a class="btn btn-sm btn-primary" th:href="@{/carro/alterar/{idCarro}(idCarro=${carro.id})}">ALTERAR</a>
-										<a class="btn delete btn-sm btn-danger" th:href="@{/carro/excluir/{idCarro}(idCarro=${carro.id})}">EXCLUIR</a>
+										<a class="btn btn-sm btn-primary" th:href="@{/fabricante/alterar/{idFabricante}(idFabricante=${fabricante.id})}">ALTERAR</a>
+										<a class="btn delete btn-sm btn-danger" th:href="@{/fabricante/excluir/{idFabricante}(idFabricante=${fabricante.id})}">EXCLUIR</a>
 									</div>
 								</td>
 							</tr>
@@ -50,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-		<a class="btn tbn-sm btn-success" th:href="@{/carro/cadastrar}">CADASTRAR NOVO CARRO</a>
+		<a class="btn tbn-sm btn-success" th:href="@{/fabricante/cadastrar}">CADASTRAR NOVO FABRICANTE</a>
 	</div>
 
 </body>

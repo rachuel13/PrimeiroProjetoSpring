@@ -9,33 +9,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.primeiroprojetospring.domain.Carro;
+import br.com.primeiroprojetospring.service.AcessorioService;
 import br.com.primeiroprojetospring.service.CarroService;
 import br.com.primeiroprojetospring.service.ChaveService;
+import br.com.primeiroprojetospring.service.DocumentoService;
 
 @Controller
 @RequestMapping("carro")
 public class CarroController {
-
+	
 	@Autowired
 	private CarroService carroService;
 	
 	@Autowired
 	private ChaveService chaveService;
 	
-	@GetMapping("/listarCarros")
-	public ModelAndView listaTodosCarro() {
+	@Autowired
+	private DocumentoService documentoService;
+	
+	@Autowired
+	private AcessorioService acessorioService;
+	
+	@GetMapping("/listaCarros")
+	public ModelAndView  listaTodosCarro() {
 		ModelAndView mView = new ModelAndView("carro/paginaListaCarros");
-		mView.addObject("carros", carroService.buscarTodosCarros());
+		mView.addObject("carro", carroService.buscarTodosCarros());
 		return mView;
 	}
 	
 	@GetMapping("/cadastrar")
 	public ModelAndView cadastrarCarro() {
-		ModelAndView mView = new ModelAndView("carro/cadastraCarro");
+		ModelAndView mView = new ModelAndView("carro/cadastrarCarro");
 		mView.addObject("carro", new Carro());
 		mView.addObject("chaves", chaveService.buscarTodasChaves());
+		mView.addObject("documentos", documentoService.buscarTodosDocumentos());
+		mView.addObject("acessorios", acessorioService.buscarTodosAcessorios());
 		return mView;
-		
 	}
 	
 	@PostMapping("/salvar")
@@ -45,9 +54,12 @@ public class CarroController {
 	}
 	
 	@GetMapping("/alterar/{id}")
-	public ModelAndView alterarCarro(@PathVariable("id") Integer idCarro) {
+	public ModelAndView alteraCarro(@PathVariable("id") Integer idCarro) {
 		ModelAndView mView = new ModelAndView("carro/alteraCarro");
-		mView.addObject("carro", carroService.buscarPorID(idCarro));
+		mView.addObject("carro", carroService.buscarCarroID(idCarro));	
+		mView.addObject("chaves", chaveService.buscarTodasChaves());
+		mView.addObject("documentos", documentoService.buscarTodosDocumentos());
+		mView.addObject("acessorios", acessorioService.buscarTodosAcessorios());
 		return mView;
 	}
 	
@@ -57,11 +69,18 @@ public class CarroController {
 		return listaTodosCarro();
 	}
 	
-
 	@GetMapping("/excluir/{id}")
-	public ModelAndView excluirAluno(@PathVariable("id") Integer id) {
+	public ModelAndView excluir(@PathVariable("id") Integer id) {
 		carroService.excluir(id);
 		return listaTodosCarro();
 	}
-	
+
+	public AcessorioService getAcessorioService() {
+		return acessorioService;
+	}
+
+	public void setAcessorioService(AcessorioService acessorioService) {
+		this.acessorioService = acessorioService;
+	}
+
 }

@@ -12,37 +12,36 @@ import br.com.primeiroprojetospring.repository.CarroRepository;
 
 @Service
 public class CarroService {
-	
+
 	@Autowired
 	private CarroRepository carroRepository;
-	
+
 	public List<Carro> buscarTodosCarros() {
-
 		return carroRepository.findAll();
-
 	}
 
 	public Carro salvar(Carro carro) {
-
 		return carroRepository.save(carro);
+	}
+	
 
-	}
-	
-	public Carro buscarPorID(Integer id) throws ObjectNotFoundException {
+	public Carro buscarCarroID(Integer id) {
 		Optional<Carro> carro = carroRepository.findById(id);
-		return carro.orElseThrow(()   -> 
-		new ObjectNotFoundException(new Carro(), "Carro não encontrado. id: " + id));
+		return carro.orElseThrow(() -> new ObjectNotFoundException(new Carro(), "Carro não encontrado. Id: " + id));
 	}
-	
+
 	public Carro salvarAlteracao(Carro carroAlterado) throws ObjectNotFoundException {
-		Carro carro = buscarPorID(carroAlterado.getId());
+		Carro carro = buscarCarroID(carroAlterado.getId());
 		carro.setId(carroAlterado.getId());
 		carro.setModelo(carroAlterado.getModelo());
-		carro.setChaveCarro(carroAlterado.getChaveCarro());
-		return carro;
+		carro.setChaveCarro(carro.getChaveCarro());
+		carro.setDocumentoCarro(carroAlterado.getDocumentoCarro());
+		carro.setAcessorios(carroAlterado.getAcessorios());
+		return salvar(carro);
 	}
-	
+
 	public void excluir(Integer id) {
 		carroRepository.deleteById(id);
 	}
-	}
+
+}

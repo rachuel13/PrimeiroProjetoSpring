@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http:www.thymeleaf.org">
 <head>
-<title>Alterar Carro</title>
+<title>Cadastro de Carro</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet"></link>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -11,21 +11,17 @@
 
 	<div class="container">
 		<div class="panel-heading" align="center">
-			<strong>ALTERAÇÃO DE CARRO</strong>
+			<strong>CADASTRO DE CARRO</strong>
 		</div>
 		
 		<div class="panel-body border">
-			<form class="form-horizontal" th:object="${carro}" th:action="@{/carro/alterar}" method="POST" style="margin: 10px">
+			<form class="form-horizontal" th:object="${carro}" th:action="@{/carro/salvar}" method="POST" style="margin: 10px">
 				<div class="form-group">
 					<fieldset>
 						<div class="form-group row">
-							<label>ID</label>
-							<input type="text" class="form-control input-sm" id="id" th:field="*{id}" readOnly="readonly"/>													
-						</div>
-						<div class="form-group row">
 							<label>MODELO</label>
 							<input type="text" class="form-control input-sm" th:field="*{modelo}" autofocus="autofocus"
-							placeholder="Informe o nome" maxlength="50"/>						
+							placeholder="Informe o modelo" maxlength="50"/>						
 						</div>
 						<div class="form-group row">
 							<label>CHAVE</label>
