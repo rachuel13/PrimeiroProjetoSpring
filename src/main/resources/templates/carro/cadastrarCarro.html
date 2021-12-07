@@ -32,7 +32,7 @@
 						</div>
 						<div class="form-group row">
 							<label>DOCUMENTO</label>
-							<select class="form-control" th:field="*{chaveCarro}">
+							<select class="form-control" th:field="*{documentoCarro}">
 								<option value="">Selecione o documento</option>
 								<option th:each="documento :${documentos}" th:value="${documento.id}" th:text="${documento.id}"></option>
 							</select>
@@ -43,6 +43,14 @@
 								<input type="checkbox" th:field="*{acessorios}" th:value="${acessorio.id}"/>
 								<label th:for="${('acessorios')}" th:text="${acessorio.nome}"></label>
 							</div>
+						</div>
+						</div>
+						<div class="form-group row">
+							<label>FABRICANTE</label>
+							<select class="form-control" th:field="*{fabricanteCarro}">
+								<option value="">Selecione o fabricante</option>
+								<option th:each="fabricante :${fabricantes}" th:value="${fabricante.id}" th:text="${fabricante.id}"></option>
+							</select>
 						</div>
 					</fieldset>				
 				</div>
