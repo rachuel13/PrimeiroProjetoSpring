@@ -41,7 +41,6 @@ public class CarroController {
 	@Autowired
 	private FabricanteService fabricanteService;
 	
-<<<<<<< HEAD
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Carro> find(@PathVariable("id") Integer id){
 		return ResponseEntity.ok().body(carroService.buscarCarroID(id));
@@ -65,8 +64,6 @@ public class CarroController {
 	}
 	
 	
-=======
->>>>>>> main
 	@GetMapping("/listaCarros")
 	public ModelAndView  listaTodosCarro() {
 		ModelAndView mView = new ModelAndView("carro/paginaListaCarros");

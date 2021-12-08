@@ -25,6 +25,11 @@ public class AcessorioController {
 	@Autowired
 	private AcessorioService acessorioService;
 	
+	@GetMapping("/findByNome/{nome}")
+	public ResponseEntity<List<Acessorio>> findByNome(@PathVariable("nome") String nome) {
+		return ResponseEntity.ok().body(acessorioService.findByNome(nome));
+	}
+	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Acessorio> find(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok().body(acessorioService.buscarAcessorioID(id));

@@ -6,4 +6,5 @@ import br.com.primeiroprojetospring.domain.Acessorio;
 
 public interface AcessorioRepository extends JpaRepository<Acessorio, Integer>{
 
+
 }

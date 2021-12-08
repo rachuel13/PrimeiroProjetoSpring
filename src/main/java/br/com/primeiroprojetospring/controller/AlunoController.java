@@ -3,6 +3,7 @@ package br.com.primeiroprojetospring.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,23 @@ public class AlunoController {
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Aluno> find(@PathVariable("id") Integer id){
 		return ResponseEntity.ok().body(alunoService.buscarPorID(id));
+	}
+	
+	@DeleteMapping("/excluirAluno/{id}")
+	public ResponseEntity<Void> excluir(@PathVariable("id") Integer id) {
+		alunoService.excluir(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/findByNome/{nome}")
+	public ResponseEntity<List<Aluno>> findByNome(@PathVariable("nome") String nome) {
+		return ResponseEntity.ok().body(alunoService.buscaPorNome(nome));
+	}
+	
+	@GetMapping("/findByNomeStartWith/{inicio}/{fim}")
+	public ResponseEntity<List<Aluno>> findByNomeStartWithAndEndWith(@PathVariable("inicio") String inicio,
+			@PathVariable("fim") String fim) {
+		return ResponseEntity.ok().body(alunoService.findAlunoStartWithAndEndWith(inicio, fim));
 	}
 	
 	@PostMapping("/cadastrarAluno")

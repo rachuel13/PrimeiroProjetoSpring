@@ -25,6 +25,11 @@ public class ChaveController {
 	@Autowired
 	private ChaveService chaveService;
 	
+	@GetMapping("/findByCodigo/{codigo}")
+	public ResponseEntity<List<Chave>> findByCodigo(@PathVariable("codigo") String codigo) {
+		return ResponseEntity.ok().body(chaveService.findByCodigo(codigo));
+	}
+	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Chave> find(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok().body(chaveService.buscarPorID(id));		

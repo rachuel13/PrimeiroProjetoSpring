@@ -25,6 +25,11 @@ public class FabricanteController {
 	@Autowired
 	private FabricanteService fabricanteService;
 	
+	@GetMapping("/findByPais/{pais}")
+	public ResponseEntity<List<Fabricante>> findByPais(@PathVariable("pais") String pais) {
+		return ResponseEntity.ok().body(fabricanteService.findByPais(pais));
+	}
+	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Fabricante> find(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok().body(fabricanteService.buscarFabricanteID(id));		
