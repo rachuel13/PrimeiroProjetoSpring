@@ -28,4 +28,5 @@ public class Acessorio implements Serializable {
 	private String nome;
 
 	
+	
 }
